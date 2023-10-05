@@ -9,17 +9,18 @@ const App = () => {
 
 
   const clickGood = ()=> {
-   
+  
     const updatedGood = good + 1
     // console.log("good after: ", good);
     // console.log("updated: ", updatedGood);
     setGood(updatedGood); 
+
     const updatedTotal = totalClicks + 1;
     setTotalClicks(updatedTotal);
   }
 
-
   const clickNeutral = () =>{
+
     console.log("neutral before", neutral);
     const updatedNeutral = neutral + 1;
     setNeutral(updatedNeutral);
@@ -29,7 +30,9 @@ const App = () => {
     const updatedTotal = totalClicks + 1;
     setTotalClicks(updatedTotal);
   }
+
   const clickBad = () =>{
+
     console.log("bad before", bad);
     const updatedBad = bad + 1;
     setBad(updatedBad);
@@ -39,11 +42,6 @@ const App = () => {
     const updatedTotal = totalClicks + 1;
     setTotalClicks(updatedTotal);
   } 
-  
- 
- 
-
- 
 
   return (
     <div>
@@ -63,11 +61,7 @@ return(
   <button onClick={handleClick}>{text}</button>
 )
 }
-const DislayResult = (props) =>{
-  return(
-    <div>{props.text} {props.value}</div>
-  )
-}
+
 const Statistics = ({good, neutral, bad, totalClicks}) =>{
 
   if(totalClicks ===0){
@@ -92,14 +86,26 @@ const Statistics = ({good, neutral, bad, totalClicks}) =>{
 
 return(
   <div>
-    <DislayResult text= "good" value={good} />
-    <DislayResult text= "neutral" value={neutral} />
-    <DislayResult text= "bad" value={bad} />
-    <DislayResult text= "all" value={totalClicks} />
-    <DislayResult text= "average" value={calculateAverage()} />
-    <DislayResult text= "positive" value={calculatePercentage()} />
+    <StatisticLine text= "good" value={good} />
+    <StatisticLine text= "neutral" value={neutral} />
+    <StatisticLine text= "bad" value={bad} />
+    <StatisticLine text= "all" value={totalClicks} />
+    <StatisticLine text= "average" value={calculateAverage()} />
+    <StatisticLine text= "positive" value={calculatePercentage()} />
   </div>
 )
+}
+const StatisticLine = ({text, value}) =>{
+
+  return(
+    <DislayResult text= {text} value={value} />
+  )
+}
+
+const DislayResult = (props) =>{
+  return(
+    <div>{props.text} {props.value}</div>
+  )
 }
 
 
