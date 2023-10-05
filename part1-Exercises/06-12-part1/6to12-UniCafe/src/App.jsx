@@ -74,14 +74,14 @@ const Statistics = ({good, neutral, bad, totalClicks}) =>{
       const score = good * 1 + neutral * 0 + bad * -1;
       console.log("score", score);
       const average = score / totalClicks;
-      return average;  
+      return average.toFixed(1);  
   }
 
   const calculatePercentage = () =>{
       if(totalClicks === 0)
         return "0%";
       const percent = (good / totalClicks) * 100;
-      return percent + "%";
+      return percent.toFixed(1) + "%";
   }
 
 return(
@@ -95,16 +95,27 @@ return(
   </div>
 )
 }
-const StatisticLine = ({text, value}) =>{
 
+
+const StatisticLine = ({text, value}) =>{
   return(
     <DislayResult text= {text} value={value} />
   )
 }
 
 const DislayResult = (props) =>{
+  const cellStyle = {
+    width: "50%"
+  }
   return(
-    <div>{props.text} {props.value}</div>
+      <table style={{ width: '50%' }}>
+        <tbody>
+      <tr>
+        <td style={cellStyle}>{props.text}</td>
+        <td style={cellStyle}>{props.value}</td>  
+      </tr>
+      </tbody>
+      </table> 
   )
 }
 
