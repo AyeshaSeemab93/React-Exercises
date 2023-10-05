@@ -65,13 +65,13 @@ const App = () => {
      <Button handleClick={clickBad}  text = "bad"/> 
 
      <h1>statistics</h1>
-     <DislayResult text= "good" value={good} />
-     <DislayResult text= "neutral" value={neutral} />
-     <DislayResult text= "bad" value={bad} />
-     <DislayResult text= "all" value={totalClicks} />
-     <DislayResult text= "average" value={calculateAverage()} />
-     <DislayResult text= "positive" value={calculatePercentage()} />
-
+      
+    <Statistics text= "good" value={good} />
+    <Statistics text= "neutral" value={neutral} />
+    <Statistics text= "bad" value={bad} />
+    <Statistics text= "all" value={totalClicks} />
+    <Statistics text= "average" value={calculateAverage()} />
+    <Statistics text= "positive" value={calculatePercentage()} />
 
 
 
@@ -89,6 +89,13 @@ const DislayResult = (props) =>{
   return(
     <div>{props.text} {props.value}</div>
   )
+}
+const Statistics = (props) =>{
+  console.log("statistics props: ", props);
+return(
+  <DislayResult text= {props.text} value={props.value} />
+ 
+)
 }
 
 
