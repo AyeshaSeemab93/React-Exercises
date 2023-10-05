@@ -42,20 +42,8 @@ const App = () => {
   
  
  
-  const calculateAverage = () =>{
-    if(totalClicks === 0)
-      return 0;
-    const score = good * 1 + neutral * 0 + bad * -1;
-    console.log("score", score);
-    const average = score / totalClicks;
-    return average;  
-  }
-  const calculatePercentage = () =>{
-    if(totalClicks === 0)
-      return "0%";
-    const percent = (good / totalClicks) * 100;
-    return percent + "%";
-  }
+
+ 
 
   return (
     <div>
@@ -65,17 +53,7 @@ const App = () => {
      <Button handleClick={clickBad}  text = "bad"/> 
 
      <h1>statistics</h1>
-      
-    <Statistics text= "good" value={good} />
-    <Statistics text= "neutral" value={neutral} />
-    <Statistics text= "bad" value={bad} />
-    <Statistics text= "all" value={totalClicks} />
-    <Statistics text= "average" value={calculateAverage()} />
-    <Statistics text= "positive" value={calculatePercentage()} />
-
-
-
-
+     <Statistics good= {good} neutral = {neutral} bad = {bad} totalClicks = {totalClicks}/>
     </div>
   )
 }
@@ -90,11 +68,37 @@ const DislayResult = (props) =>{
     <div>{props.text} {props.value}</div>
   )
 }
-const Statistics = (props) =>{
-  console.log("statistics props: ", props);
+const Statistics = ({good, neutral, bad, totalClicks}) =>{
+
+  if(totalClicks ===0){
+    return <div>No feedback given</div>
+  }
+
+  const calculateAverage = () =>{
+      if(totalClicks === 0)
+        return 0;
+      const score = good * 1 + neutral * 0 + bad * -1;
+      console.log("score", score);
+      const average = score / totalClicks;
+      return average;  
+  }
+
+  const calculatePercentage = () =>{
+      if(totalClicks === 0)
+        return "0%";
+      const percent = (good / totalClicks) * 100;
+      return percent + "%";
+  }
+
 return(
-  <DislayResult text= {props.text} value={props.value} />
- 
+  <div>
+    <DislayResult text= "good" value={good} />
+    <DislayResult text= "neutral" value={neutral} />
+    <DislayResult text= "bad" value={bad} />
+    <DislayResult text= "all" value={totalClicks} />
+    <DislayResult text= "average" value={calculateAverage()} />
+    <DislayResult text= "positive" value={calculatePercentage()} />
+  </div>
 )
 }
 
