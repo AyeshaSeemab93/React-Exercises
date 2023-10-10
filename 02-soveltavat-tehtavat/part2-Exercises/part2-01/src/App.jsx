@@ -69,9 +69,9 @@ const Part = ({ part }) =>
     {part.name} {part.exercises}
   </p>
 
-const Total = ({parts}) =>{
+const Total = ({sum}) =>{
   
-console.log("Total: ", parts);
+console.log("Total: ", sum);
  return(
     <p>total of {sum} exercises </p>
   )
