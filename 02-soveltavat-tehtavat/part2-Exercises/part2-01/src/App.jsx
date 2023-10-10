@@ -1,56 +1,79 @@
-
-const App = () => {
-  const course = {
-    id: 1,
-    name: 'Half Stack application development',
-    parts: [
+  const App = () => {
+    const courses = [
       {
-        name: 'Fundamentals of React',
-        exercises: 10,
-        id: 5
-      },
+        name: 'Half Stack application development',
+        id: 1,
+        parts: [
+          {
+            name: 'Fundamentals of React',
+            exercises: 10,
+            id: 1
+          },
+          {
+            name: 'Using props to pass data',
+            exercises: 7,
+            id: 2
+          },
+          {
+            name: 'State of a component',
+            exercises: 14,
+            id: 3
+          },
+          {
+            name: 'Redux',
+            exercises: 11,
+            id: 4
+          }
+        ]
+      }, 
       {
-        name: 'Using props to pass data',
-        exercises: 7,
-        id: 2
-      },
-      {
-        name: 'State of a component',
-        exercises: 14,
-        id: 3
-      },{
-        name: 'Redux',
-        exercises: 11,
-        id:4
+        name: 'Node.js',
+        id: 2,
+        parts: [
+          {
+            name: 'Routing',
+            exercises: 3,
+            id: 1
+          },
+          {
+            name: 'Middlewares',
+            exercises: 7,
+            id: 2
+          }
+        ]
       }
     ]
+  
+    return (
+      <div>
+         <Course course = {courses} />
+      </div>
+    )
   }
 
-  return(
-    <div>
-        <Course course={course} />
-        
-    </div>
-  )
-  
- 
-  
-}
+
 const Course = ({ course }) => {
-  
+  console.log("course: ", course);
   return (
     <div>
-      <Header course={course.name} />
-      <Content parts={course.parts}/>
-       <Total sum= {course.parts.reduce(function(sum, {exercises}){
-        return  sum + exercises
-      },0 )}/>
-     {/* <Total parts= {course.parts}/> */}
+      {
+        course.map(function(course){
+          console.log(course);
+          return(
+            <div>
+            <Header course = {course} />
+            <Content parts={course.parts}/>
+             <Total parts= {course.parts}/> 
+             </div>
+          )
+        })
+
+      }
     
     </div>
   );
 };
-const Header = ({ course }) => <h1>{course}</h1>
+const Header = ({ course }) => <h1>{course.name}</h1>   
 
 const Content = ({parts}) => {
 console.log("content parts: " ,parts);
@@ -69,21 +92,17 @@ const Part = ({ part }) =>
     {part.name} {part.exercises}
   </p>
 
-const Total = ({sum}) =>{
+const Total = ({parts}) =>{
   
-console.log("Total: ", sum);
- return(
-    <p>total of {sum} exercises </p>
-  )
-// return(
-// <p>total of 
-//   {
-//     parts.reduce(function(sum, {exercises}){
-//       return sum + exercises
-//     }, 0)
-//   } exercises
-// </p>
-// )
+console.log("Total: ", parts);
+return(
+<p>total of {
+    parts.reduce(function(sum, {exercises}){
+      return sum + exercises
+    }, 0)
+  } exercises
+</p>
+)
   
 } 
 
