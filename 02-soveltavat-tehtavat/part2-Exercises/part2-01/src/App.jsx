@@ -42,8 +42,11 @@ const Course = ({ course }) => {
     <div>
       <Header course={course.name} />
       <Content parts={course.parts}/>
-     <Total parts= {course.parts}/>
-   
+       <Total sum= {course.parts.reduce(function(sum, {exercises}){
+        return  sum + exercises
+      },0 )}/>
+     {/* <Total parts= {course.parts}/> */}
+    
     </div>
   );
 };
@@ -69,16 +72,19 @@ const Part = ({ part }) =>
 const Total = ({parts}) =>{
   
 console.log("Total: ", parts);
-return(
-<p>total of 
-  {
-    parts.reduce(function(sum, {exercises}){
-      return sum + exercises
-    }, 0)
-  } exercises
-</p>
-)
- 
+ return(
+    <p>total of {sum} exercises </p>
+  )
+// return(
+// <p>total of 
+//   {
+//     parts.reduce(function(sum, {exercises}){
+//       return sum + exercises
+//     }, 0)
+//   } exercises
+// </p>
+// )
+  
 } 
 
 
