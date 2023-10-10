@@ -18,11 +18,22 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
+      },{
+        name: 'Redux',
+        exercises: 11,
+        id:4
       }
     ]
   }
 
-  return  <Course course={course} />
+  return(
+    <div>
+        <Course course={course} />
+        
+    </div>
+  )
+  
+ 
   
 }
 const Course = ({ course }) => {
@@ -31,7 +42,8 @@ const Course = ({ course }) => {
     <div>
       <Header course={course.name} />
       <Content parts={course.parts}/>
-     
+     <Total parts= {course.parts}/>
+   
     </div>
   );
 };
@@ -42,8 +54,8 @@ console.log("content parts: " ,parts);
 return(
   <>
    {
-   parts.map(part =>
-      <Part key={part.id} part={part} />
+   parts.map(part =>  
+            <Part key={part.id} part={part} />
       )
    }  
   </>
@@ -54,7 +66,20 @@ const Part = ({ part }) =>
     {part.name} {part.exercises}
   </p>
 
-const Total = ({ sum }) => <p>Number of exercises {sum}</p>
+const Total = ({parts}) =>{
+  
+console.log("Total: ", parts);
+return(
+<p>total of 
+  {
+    parts.reduce(function(sum, {exercises}){
+      return sum + exercises
+    }, 0)
+  } exercises
+</p>
+)
+ 
+} 
 
 
 
