@@ -11,10 +11,27 @@ function App(){
   }
 
   function AddPerson(){
-    const personObj = {
-      name: newName
-    }
-    setPersons(persons.concat(personObj))
+    const nameExists = persons.some(person=>person.name === newName);
+    //some method give true or false
+      if(nameExists){
+          alert(`${newName} is already added to phonebook`);  
+        }
+        else{
+          const personObj = {
+            name: newName
+          }
+          setPersons(persons.concat(personObj))
+          setNewName('')
+        }
+
+
+  // nameExists
+  // ? alert(`${newName} is already added to phonebook`)
+  // : (
+  //     setPersons([...persons, { name: newName }]),
+  //     setNewName('')
+  //   );
+  
   }
  
   return(
