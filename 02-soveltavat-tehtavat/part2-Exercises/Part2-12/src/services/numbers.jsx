@@ -15,4 +15,11 @@ const update = (id, objToUpdate) =>{
   const request = axios.post(`${baseURL}/${id}`, objToUpdate)
   return request.then(responce => responce.data)
 }
-export default{ getAll, create, update}
+const remove = (id,personToDelete) =>{
+  
+  console.log('we are deleting in numbers.jsx')
+ 
+  const request = axios.delete(`${baseURL}/${id}`, personToDelete)
+  return request .then(response => response.data)
+}
+export default{ getAll, create, update, remove}

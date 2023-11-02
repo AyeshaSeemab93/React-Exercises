@@ -62,6 +62,16 @@ console.log('render', persons.length, 'persons')
         }
           }
 
+    const deleteEntry = (id) =>{
+     console.log('id received in toggle function is : ', id)
+    const personToDelete = persons.find(person=> person.id === id )
+     if(window.confirm('Are you sure You want to delete this?'))
+      {
+        numberService.remove(id, personToDelete)
+        .then(data => setPersons(persons.filter(person => person.id !== id)))
+      } 
+    }
+
   return(
     <div>
       <h2>Phonebook</h2>
@@ -92,7 +102,8 @@ console.log('render', persons.length, 'persons')
 
       <Person 
       key={persons.id} 
-      phonebookToShow={phonebookToShow} 
+      phonebookToShow={phonebookToShow}
+      deleteEntry={deleteEntry} //just reference here
       />
     </div>
   )

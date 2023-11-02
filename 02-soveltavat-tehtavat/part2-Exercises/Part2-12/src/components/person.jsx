@@ -1,10 +1,17 @@
 
-function Person({phonebookToShow}){
+function Person({phonebookToShow, deleteEntry}){
 return(
   <div>
     {
-    phonebookToShow.map(person => 
-        <p key={person.name}>{person.name} {person.number}</p>
+    phonebookToShow.map(person =>
+    <p key={person.id}>
+      {person.name} {person.number}
+    <button onClick={()=>{
+      console.log('person id is ', person.id);
+      deleteEntry(person.id); 
+      }}>delete</button>
+        </p>
+          
         )
     }
   </div>
