@@ -1,7 +1,7 @@
 import { useState, useEffect} from 'react'
 import Note from './components/Note'
-import axios from 'axios'
 import noteService from './services/notes'
+import axios from 'axios'
 
 function App(){
    const [notes, setNote] = useState([])
@@ -42,26 +42,27 @@ function AddNote(){
     setText('')
 
     })
-
-    //adding new note to the  new copy of notes
-    // setNote(notes.concat(noteObj))
-    // setText('')
 }
 
 function toggleImportanceOf(id){
-    const url = `http://localhost:3000/notes/${id}`
     const note = notes.find(n => n.id === id)
     //creating new object of the note bec can not change directly in the state
     const changedNote = {...note, important: !note.important}
     
     //replace the note in the notes in server
     // axios.put(url, changedNote)
-    noteService.update(id, changedNote)
+    noteService
+    .update(id, changedNote)
     .then(returnedNote=>{
-      //now set the note in state from server data
+      //now set the note in state also from server data
         setNote(notes.map(note =>
           note.id !== id ? note : returnedNote
         ))
+    })
+    .catch(error =>{
+      alert(`the note '${note.content}' was already deleted from server`)
+      //Set the state again(delete handcoded note) filter method.it give new array with all ids execept this id
+    setNote(notes.filter(n =>n.id !== id))
     })
  }
 
@@ -96,21 +97,3 @@ function ChangeInput(event){
 
 }
 export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
