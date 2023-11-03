@@ -4,7 +4,7 @@
       "npm install": "json-server --save-dev",
       "id": 1,
       "content": "HTML is easy",
-      "important": false
+      "important": true
     },
     {
       "id": 2,
@@ -25,11 +25,6 @@
       "content": "Add new Note",
       "important": true,
       "id": 5
-    },
-    {
-      "content": "Add new Note",
-      "important": true,
-      "id": 6
     }
   ]
 }

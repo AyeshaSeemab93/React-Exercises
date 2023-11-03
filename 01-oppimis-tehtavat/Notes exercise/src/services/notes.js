@@ -13,7 +13,7 @@ const getAll = () => {
   const request = axios.get(baseURL)
   const nonExisting = {
     id: 10000,
-    content: 'This note is not saved to server',
+    content: 'This note is not saved to server but handcoded into state only',
     important: true,
   }
   return request.then(response => response.data.concat(nonExisting))

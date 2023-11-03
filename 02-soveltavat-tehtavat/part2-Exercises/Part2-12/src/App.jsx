@@ -3,6 +3,7 @@ import Person from './components/person'
 import Filter from './components/Filter'
 import PersonForm from './components/personForm'
 import numberService from './services/numbers'
+import './index.css'
 
 
 function App(){
