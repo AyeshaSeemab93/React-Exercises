@@ -5,7 +5,7 @@ function Filter({searchedName,setSearchedName,showAll ,setShowAll}){
   
   return(
     <div>
-      filer shown with
+      Filter Shown With: 
       <input 
         value={searchedName} 
         onChange={ChangeSearch} 
@@ -13,7 +13,6 @@ function Filter({searchedName,setSearchedName,showAll ,setShowAll}){
       />
     </div>
   )
-
 
 }
 export default Filter

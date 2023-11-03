@@ -14,7 +14,7 @@ function App(){
 
   const[searchedName, setSearchedName] = useState('')
   const[showAll, setShowAll]= useState(true)
-  const [message, setMessage] = useState(null)
+  const [message, setMessage] = useState('message')
 
     useEffect(()=>{
       console.log("using effect")
@@ -50,14 +50,21 @@ console.log('render', persons.length, 'persons')
          {
             const updatedPerson = {...nameExists, number : newNum}
             numberService
-            .update(nameExists.id, updatedPerson)
-            .then(data =>{
-              //updating state as well
-              const updatedPersons = persons.map(person => person.id ===nameExists.id ? updatedPerson : person)
-              setPersons(updatedPersons); 
-              setMessage('Phone Number Changed Successfully!')
-              setTimeout(()=>{setMessage(null)}, 3000) //message dissapper fro 3 sec
-            })  
+              .update(nameExists.id, updatedPerson)
+              .then(data =>{
+                //updating state as well
+                const updatedPersons = persons.map(person => person.id ===nameExists.id ? updatedPerson : person)
+                setPersons(updatedPersons); 
+                setMessage('Phone Number Changed Successfully!')
+                setTimeout(()=>{setMessage(null)}, 3000) //message dissapper fro 3 sec
+              }) 
+              .catch(error=>{
+                setMessage(`Information of ${updatedPerson.name} has already been removed from server`)
+                setTimeout(() => {
+                  setMessage(null)
+                }, 3000);
+
+              }) 
           }
         }  
      else{
@@ -82,7 +89,7 @@ console.log('render', persons.length, 'persons')
           }
 
     const deleteEntry = (id) =>{
-     console.log('id received in toggle function is : ', id)
+     console.log('id received in delete function is : ', id)
     const personToDelete = persons.find(person=> person.id === id )
      if(window.confirm('Are you sure You want to delete this?'))
       {
@@ -94,7 +101,7 @@ console.log('render', persons.length, 'persons')
     }
 
   return(
-    <div>
+    <div className='main'>
       <h2>Phonebook</h2>
       <Notification message = {message} />
       <Filter 

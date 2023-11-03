@@ -9,7 +9,7 @@ return(
     <button onClick={()=>{
       console.log('person id is ', person.id);
       deleteEntry(person.id); 
-      }}>delete</button>
+      }}>Delete</button>
         </p>
           
         )

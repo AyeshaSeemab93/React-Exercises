@@ -1,6 +1,11 @@
 import React from 'react';
 
 function PersonForm({newName, setNewName, newNum, setNewNum, AddPerson }) {
+  const stylebutton = {
+    "margin-top": 20,
+    "margin-left": 0,
+    "margin-bottom": 30
+  }
   function handleChangeText(event) {
     setNewName(event.target.value);
   }
@@ -16,14 +21,14 @@ function PersonForm({newName, setNewName, newNum, setNewNum, AddPerson }) {
         //AddPerson();// can Invoke AddPerson directly here rather than at button
       }}>
         <div>
-          name: <input type="text" value={newName} onChange={handleChangeText} />
+          Name: <input type="text" value={newName} onChange={handleChangeText} />
         </div>
         <br />
         <div>
-          number: <input value={newNum} onChange={handleChangeNum} />
+          Number: <input value={newNum} onChange={handleChangeNum} />
         </div>
         <div>
-          <button type="submit" onClick={AddPerson} >add</button>
+          <button style={stylebutton} type="submit" onClick={AddPerson} >Add to PhoneBook</button>
         </div>
       </form>
     </div>
