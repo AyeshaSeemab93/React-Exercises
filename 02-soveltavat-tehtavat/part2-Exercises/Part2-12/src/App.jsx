@@ -38,27 +38,37 @@ console.log('render', persons.length, 'persons')
       ))
    function AddPerson(){
     // const nameExists = persons.some(person=>person.name === newName);
-    //some method give true or false where as filter give list with the selected condition
-    console.log('added person')
-
-    const nameExists = persons.filter(person=>person.name === newName);
-      if(nameExists.length > 0 ){
-          alert(`${newName} is already added to phonebook`);  
-        }
-        else{
-          const personObj = {
+    //some method give true or false where as find give person with the condition
+    const nameExists = persons.find(person=>person.name.toLowerCase() === newName.toLowerCase());
+    console.log('nameExist: ', nameExists)
+      if(nameExists)
+        {
+        if(window.confirm(`${newName} is already added to the phonebook. Replace the old number with the new one?`))
+         {
+            const updatedPerson = {...nameExists, number : newNum}
+            numberService
+            .update(nameExists.id, updatedPerson)
+            .then(data =>{
+              //updating state as well
+              const updatedPersons = persons.map(person => person.id ===nameExists.id ? updatedPerson : person)
+              setPersons(updatedPersons); 
+            })  
+          }
+        }  
+     else{
+        const personObj = {
             name: newName,
             number: newNum,
             id: persons.length + 1
-            }
-            //add new person to server
-            numberService.create(personObj)
-            .then(response=>  setPersons(persons.concat(response)))
-            //update the state from server response(above) or do it from here like below
-           setPersons(persons.concat(personObj))
-          setNewName('')
-          setNewNum('')
-          console.log('added person')
+          }
+          //add new person to server
+          numberService.create(personObj)
+          .then(response=>  setPersons(persons.concat(response)))
+          //update the state from server response(above) or do it from here like below
+          setPersons(persons.concat(personObj))
+        setNewName('')
+        setNewNum('')
+        console.log('addPerson method successfully end')
         }
           }
 

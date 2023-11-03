@@ -12,12 +12,14 @@ const create = (newObj) =>{
 }
 
 const update = (id, objToUpdate) =>{
-  const request = axios.post(`${baseURL}/${id}`, objToUpdate)
+  console.log('id in update method: ', id)
+  console.log('object in update method: ', objToUpdate)
+  const request = axios.put(`${baseURL}/${id}`, objToUpdate)
   return request.then(responce => responce.data)
 }
-const remove = (id,personToDelete) =>{
-  
-  console.log('we are deleting in numbers.jsx')
+
+const remove = (id,personToDelete) =>{ 
+
  
   const request = axios.delete(`${baseURL}/${id}`, personToDelete)
   return request .then(response => response.data)
