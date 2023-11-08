@@ -6,12 +6,12 @@ import Footer from './components/Footer'
 import './index.css'
 
 function App(){
-   const [notes, setNote] = useState([])
+   const [notes, setNote] = useState(null)
   // const [notes, setNote] = useState(props.notes)
   const[showAll, setShowAll] = useState(true)
   const[text, setText] = useState('Add new Note')
-
   const [errorMessage, setErrorMessage] = useState('some error happened...')
+
   //getting data from server (http get USING AXIOUS)
       useEffect(()=>{
         console.log("use effect"),
@@ -21,6 +21,7 @@ function App(){
           setNote(initialNotes)
         })}, []);
      // console.log('rendered', notes.length, 'notes')
+   
 
   //if statement
     const showNotes = showAll
