@@ -25,6 +25,11 @@
       "content": "Add new Note",
       "important": true,
       "id": 5
+    },
+    {
+      "content": "Add new Note",
+      "important": false,
+      "id": 6
     }
   ]
 }

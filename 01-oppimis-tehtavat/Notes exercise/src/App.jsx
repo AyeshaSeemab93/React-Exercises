@@ -1,7 +1,9 @@
 import { useState, useEffect} from 'react'
 import Note from './components/Note'
+import Notification from './components/Notification'
 import noteService from './services/notes'
-import axios from 'axios'
+import Footer from './components/Footer'
+import './index.css'
 
 function App(){
    const [notes, setNote] = useState([])
@@ -9,6 +11,7 @@ function App(){
   const[showAll, setShowAll] = useState(true)
   const[text, setText] = useState('Add new Note')
 
+  const [errorMessage, setErrorMessage] = useState('some error happened...')
   //getting data from server (http get USING AXIOUS)
       useEffect(()=>{
         console.log("use effect"),
@@ -60,24 +63,26 @@ function toggleImportanceOf(id){
         ))
     })
     .catch(error =>{
-      alert(`the note '${note.content}' was already deleted from server`)
+      //earlier was alert('the note...')
+     setErrorMessage(`The note '${note.content}' was already removed from server`)
+     //remove message after 5 sec
+     setTimeout(()=>{
+      setErrorMessage(null)
+     }, 5000)
       //Set the state again(delete handcoded note) filter method.it give new array with all ids execept this id
     setNote(notes.filter(n =>n.id !== id))
     })
  }
 
-
 function ChangeInput(event){
   setText(event.target.value)
 }
 
-
-
-
   return(
     <div>
       <h1>Notes</h1>
-      <button onClick={()=>setShowAll(!showAll)}> 
+       <Notification message={errorMessage}/> 
+      <button className='button' onClick={()=>setShowAll(!showAll)}> 
         Show {showAll ? ' important' : ' All'}
       </button>
       <ul>
@@ -89,9 +94,10 @@ function ChangeInput(event){
         />)}
       </ul>
       <form onSubmit={(event)=> event.preventDefault()}>
-        <input value={text} onChange={ChangeInput} />
-        <button onClick={AddNote}>Save</button>
+        <input className='input' value={text} onChange={ChangeInput} />
+        <button className='button' onClick={AddNote}>Save</button>
       </form>
+      <Footer/>
     </div>
   )
 
