@@ -11,7 +11,8 @@ function App(){
   const[showAll, setShowAll] = useState(true)
   const[text, setText] = useState('Add new Note')
 
-  const [errorMessage, setErrorMessage] = useState('some error happened...')
+  const [errorMessage, setErrorMessage] = useState('Notification messages appear here!')
+
   //getting data from server (http get USING AXIOUS)
       useEffect(()=>{
         console.log("use effect"),
@@ -43,6 +44,16 @@ function AddNote(){
     // const newNote = responce.data;
     setNote(notes.concat(returnedNote))
     setText('')
+
+  //earlier was alert('the note...')
+  setErrorMessage(`New Note added successfully!`)
+  //remove message after 3 sec
+  setTimeout(()=>{
+   setErrorMessage(null)
+  }, 3000)
+
+
+
 
     })
 }

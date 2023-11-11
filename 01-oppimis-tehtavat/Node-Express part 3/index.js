@@ -1,9 +1,11 @@
-// const http = require('http')
+// const http = require('http') instaead we use express now
 const express = require('express')
 //creating server
 const app = express();
-//for posting (ato access the data sent with req)
+//for posting (json parser: to access the raw data sent with req)
 app.use(express.json())
+const cors = require('cors')
+app.use(cors());
 
 
 // const app = http.createServer((request, response) => {
@@ -22,6 +24,7 @@ let notes = [
     content: "Browser can execute only JavaScript",
     important: false
   },
+  
   {
     id: 3,
     content: "GET and POST are the most important methods of HTTP protocol",
@@ -32,7 +35,7 @@ let notes = [
 
 app.get('/', (req, res)=>{
   console.log('request received');
-  res.send('<h1>Hello World!</h1>')
+  res.send('<h1>Hello World! Welcome to notes(Node-Express part 3)</h1>')
 })
 app.get('/api/notes', (req, res)=>{
   console.log('request for all notes');
@@ -90,9 +93,9 @@ app.post('/api/notes', (request, response) => {
 
 
 
-//running the servere
-const PORT = 3001
+//running the servere (for fly.io, render deploying)
+const PORT = process.env.PORT || 3001
 app.listen(PORT, ()=>{
   console.log(`Server running on port ${PORT}`)
-  console.log(`Server running on port ${PORT}`)
+  
 })
