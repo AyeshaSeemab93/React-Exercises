@@ -43,12 +43,11 @@ setSelectedCountry(country)
 
   return (
     <div>
-      find countries: 
-      <input
+      Find countries: <input
         type="text"
         value={countryName}
         onChange={handleChange}
-      />
+        />
 
       {message && <p>{message}</p>} 
 
@@ -61,13 +60,15 @@ setSelectedCountry(country)
             </div>
           ))}
         </div>
-      )}
-      
+        )
+      }
+
       {countryData.length === 1 && (
-        <CountryInfo country= {countryData[0]} />
-      )}
+        <CountryInfo country= {countryData[0]} />)
+      }
 
       {selectedCountry && (<CountryInfo country={selectedCountry}/>)}
+
     </div>
   );
 };
