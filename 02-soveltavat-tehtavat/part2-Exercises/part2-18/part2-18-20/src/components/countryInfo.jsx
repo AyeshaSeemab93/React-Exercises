@@ -34,7 +34,12 @@ const CountryInfo = ({ country }) => {
       <p>Population: {country.population}</p>
       <p>Region: {country.region}</p>
       <p>Subregion: {country.subregion}</p>
-      <p>Language: {country.languages[Object.keys(country.languages)[0]]}</p>
+      <h2>Languages</h2>
+      <ul>
+          {Object.values(country.languages).map((language, index) => (
+            <li key={index}>{language}</li>
+          ))}
+        </ul>
       <img src={country.flags.png} alt={country.name.common} />
 
       {loading && <p>Loading weather data...</p>}
