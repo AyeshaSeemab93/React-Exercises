@@ -2,12 +2,12 @@ const Total = ({parts}) =>{
   
   console.log("Total: ", parts);
   return(
-  <p>total of {
+  <h3>total of {
       parts.reduce(function(sum, {exercises}){
         return sum + exercises
       }, 0)
     } exercises
-  </p>
+  </h3>
   ) 
   } 
 

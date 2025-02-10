@@ -7,14 +7,15 @@ const Course = ({ course }) => {
   console.log("course: ", course);
   return (
     <div>
+      <h1>Web development curriculum</h1>
       {
-        course.map(function(course){
+        course.map(function(courseItem){
           console.log(course);
           return(
-            <div>
-            <Header course = {course} />
-            <Content parts={course.parts}/>
-             <Total parts= {course.parts}/> 
+            <div key={courseItem.id}>
+            <Header name = {courseItem.name} />
+            <Content parts={courseItem.parts}/>
+             <Total parts= {courseItem.parts}/> 
              </div>
           )
         })
