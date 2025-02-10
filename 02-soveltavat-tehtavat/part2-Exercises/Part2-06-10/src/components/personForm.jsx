@@ -2,10 +2,12 @@
 function PersonForm({persons, setPersons, newName, setNewName, newNum, setNewNum}){
 
   function ChnageText(event){
+    event.preventDefault()
     console.log('event', event)
     setNewName(event.target.value)
   }
   function ChangeNum(event){
+    event.preventDefault()
     setNewNum(event.target.value)
   }
  
@@ -32,10 +34,10 @@ function PersonForm({persons, setPersons, newName, setNewName, newNum, setNewNum
     <div>
          <form onSubmit={function(event){ console.log(event); event.preventDefault()}}>
         <div>
-        name: <input type="text" value={newName} onChange={ChnageText}/>
+          Name: <input type="text" value={newName} onChange={ChnageText}/>
         </div>
         <div>
-          number: <input value={newNum} onChange={ChangeNum}/>
+          Number: <input value={newNum} onChange={ChangeNum}/>
         </div>
         <div>
         <button type="submit" onClick={AddPerson}>add</button>

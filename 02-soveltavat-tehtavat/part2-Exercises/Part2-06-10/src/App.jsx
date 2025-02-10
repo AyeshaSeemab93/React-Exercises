@@ -39,7 +39,7 @@ function App(){
         setShowAll={setShowAll}
       />
 
-      <h3>add a new</h3>
+      <h3>Add a new</h3>
       
       <PersonForm 
           key={persons.id}

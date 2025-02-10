@@ -5,7 +5,7 @@ function Filter({searchedName,setSearchedName,showAll ,setShowAll}){
   
   return(
     <div>
-  filer shown with<input value={searchedName} onChange={ChangeSearch} onClick={() => setShowAll(!showAll)}/>
+      filer shown with<input value={searchedName} onChange={ChangeSearch} onClick={() => setShowAll(!showAll)}/>
     </div>
   )
 
